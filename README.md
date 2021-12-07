@@ -1,6 +1,6 @@
 # Terminal-Colored-Print
 
-# About
+## About
 
 A small module that allows to simply decorate strings on Linux terminals. I personally use it for multi-threaded project, it helps me recognize which thread is actually talking.
 
@@ -14,7 +14,7 @@ You can select the foreground color (text color), background color and format (t
 
 ![ID codes](https://i.imgur.com/UlquHhH.png)
 
-# How to use
+## How to use
 
 [How to use](https://user-images.githubusercontent.com/28491164/145122077-296f36b2-9b61-4c81-be3d-b7c8740e0c51.mp4)
 
