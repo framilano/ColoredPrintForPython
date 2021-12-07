@@ -67,5 +67,3 @@ def colored_sprint(text = "", fg_color = None, bg_color = None, format = None):
             if (selected_format in formats.keys()): result = formats[selected_format] + result + reset_code
 
     return result
-
-colored_print("Hello world!", fg_color=196, format="Underline")
