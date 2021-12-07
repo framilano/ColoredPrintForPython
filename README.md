@@ -2,8 +2,7 @@
 
 # About
 
-
-A small module that allows to simply decorate strings on Linux terminals
+A small module that allows to simply decorate strings on Linux terminals. I personally use it for multi-threaded project, it helps me recognize which thread is actually talking.
 
 Compatible with Python > 2.7
 
@@ -11,9 +10,7 @@ Compatible with Python > 2.7
 pip install terminal-colored-print
 ```
 
-You can select the foreground color (text color), background color and format (text style) for your Text.
-
-Foreground and background color values are between 0 and 255, format can be Bold, Underline and Reversed, any combination of them is accepted
+You can select the foreground color (text color), background color and format (text style) for your Text. Foreground and background color values are between 0 and 255, format can be Bold, Underline and Reversed, any combination of them is accepted
 
 ![ID codes](https://i.imgur.com/UlquHhH.png)
 
