@@ -36,7 +36,7 @@ def colored_print(text = "", fg_color = None, bg_color = None, format = None):
 
     print(result)
 
-def colored_print(text = "", fg_color = None, bg_color = None, format = None):
+def colored_sprint(text = "", fg_color = None, bg_color = None, format = None):
     """
     Returns a decorated version of a text string with customised color and style
     ``text`` str, the actual text you want to decorate\n
