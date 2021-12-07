@@ -1,83 +1,69 @@
-#Usage example
-#colored_print(text="Hello!", color="Blue", is_bright=True, format="Underline")
-#print(colored_sprint("Hello sprint!", "Red", format="Underline", is_bright=False))
-
-#Available colors
-colors = {
-"Black": "\033[30m",
-"Red": "\033[31m",
-"Green": "\033[32m",
-"Yellow": "\033[33m",
-"Blue": "\033[34m",
-"Magenta": "\033[35m",
-"Cyan": "\033[36m",
-"White": "\033[37m"
-}
-
 #Available formats
-formats = {"Bold":'\033[1m', "Underline":'\033[4m'}
+formats = {"Bold":'\033[1m', "Underline":'\033[4m', "Reversed": "\033[7m"}
 
 #Reset code to end the 'decoration'
 reset_code = "\033[0m"
 
-def colored_print(text = "", color = "White", format = None, is_bright = False):
+def colored_print(text = "", fg_color = None, bg_color = None, format = None):
     """
-    Emulates a Python print with additional colors\n
-    ``text`` the string you want to print\n
-    ``color`` a string that can be [Black, Red, Green, Yellow, Blue, Magenta, Cyan, White]\n
-    ``format`` a string that can be [Bold, Underline]\n
-    ``is_bright`` a boolean that can be [True, False]
+    Prints a decorated version of a text string with customised color and style
+    ``text`` str, the actual text you want to decorate\n
+    ``fg_color`` int, the color you want to use (values are from 0 to 255)\n
+    ``bg_color`` int, the color you want to use on background (values are from 0 to 255)\n
+    ``format`` str, the style you want to apply, possible values are [Bold, Reversed, Underline]\n
+    Using bg_color parameter ignores the fg_color argument
     """
-    # Type checking the user input
-    if (not isinstance(text, str)):
-        colored_print("You inserted an invalid argument for 'text' in colored_print", 
-            color="Red", is_bright=True, format="Bold")
-    if (not isinstance(is_bright, bool)):
-        colored_print("You inserted an invalid argument for 'is_bright' in colored_print", 
-            color="Red", is_bright=True, format="Bold")
-    try:
-        if (color != None): colors[color]
-        if (format != None): formats[format]
-    except (KeyError):
-        colored_print("You inserted an invalid key for 'color' or 'format' arguments in colored_print", 
-            color="Red", is_bright=True, format="Bold")
-        return
+    if (not isinstance(text, str)): text = ""
+    if (not isinstance(fg_color, int)): fg_color = None
+    if (not isinstance(bg_color, int)): bg_color = None
+    if (not isinstance(format, str)): format = None
     
     #If no color has being selected, just use the default one
     result = text
+
+    #Resetting colors to a valid input
+    if (fg_color != None): fg_color = fg_color % 256
+    if (bg_color != None): bg_color = bg_color % 256
+
     #If color is a valid key and different from None then 
-    if (color != None): result = colors[color] + text + reset_code
-    if (format != None): result = formats[format] + result + reset_code
-    if (is_bright and color != None): result = colors[color].replace("m", ";1m") + result + reset_code
+    if (fg_color != None): result = "\033[38;5;{}m".format(fg_color) + text + reset_code
+    if (bg_color != None): result = "\033[48;5;{}m".format(bg_color) + text + reset_code
+
+    if (format != None): 
+        selected_formats = format.split(";")
+        for selected_format in selected_formats:
+            if (selected_format in formats.keys()): result = formats[selected_format] + result + reset_code
+
     print(result)
 
-def colored_sprint(text = "", color = "White", format = None, is_bright = False):
+def colored_print(text = "", fg_color = None, bg_color = None, format = None):
     """
-    Returns a decorated text\n
-    ``text`` the string you want to decorate\n
-    ``color`` a string that can be [Black, Red, Green, Yellow, Blue, Magenta, Cyan, White]\n
-    ``format`` a string that can be [Bold, Underline]\n
-    ``is_bright`` a boolean that can be [True, False]
+    Returns a decorated version of a text string with customised color and style
+    ``text`` str, the actual text you want to decorate\n
+    ``fg_color`` int, the color you want to use (values are from 0 to 255)\n
+    ``bg_color`` int, the color you want to use on background (values are from 0 to 255)\n
+    ``format`` str, the style you want to apply, possible values are [Bold, Reversed, Underline]\n
+    Using bg_color parameter ignores the fg_color argument
     """
-    # Type checking the user input
-    if (not isinstance(text, str)):
-        colored_print("You inserted an invalid argument for 'text' in colored_sprint", 
-            color="Red", is_bright=True, format="Bold")
-    if (not isinstance(is_bright, bool)):
-        colored_print("You inserted an invalid argument for 'is_bright' in colored_sprint", 
-            color="Red", is_bright=True, format="Bold")
-    try:
-        if (color != None): colors[color]
-        if (format != None): formats[format]
-    except (KeyError):
-        colored_print("You inserted an invalid key for color or format arguments in colored_sprint", 
-            color="Red", is_bright=True, format="Bold")
-        return
+    if (not isinstance(text, str)): text = ""
+    if (not isinstance(fg_color, int)): fg_color = None
+    if (not isinstance(bg_color, int)): bg_color = None
+    if (not isinstance(format, str)): format = None
     
     #If no color has being selected, just use the default one
     result = text
+
+    #Resetting colors to a valid input
+    if (fg_color != None): fg_color = fg_color % 256
+    if (bg_color != None): bg_color = bg_color % 256
+
     #If color is a valid key and different from None then 
-    if (color != None): result = colors[color] + text + reset_code
-    if (format != None): result = formats[format] + result + reset_code
-    if (is_bright and color != None): result = colors[color].replace("m", ";1m") + result + reset_code
+    if (fg_color != None): result = "\033[38;5;{}m".format(fg_color) + text + reset_code
+    if (bg_color != None): result = "\033[48;5;{}m".format(bg_color) + text + reset_code
+
+    if (format != None): 
+        selected_formats = format.split(";")
+        for selected_format in selected_formats:
+            if (selected_format in formats.keys()): result = formats[selected_format] + result + reset_code
+
     return result
