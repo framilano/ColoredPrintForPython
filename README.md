@@ -2,7 +2,7 @@
 
 ## About
 
-A small module that allows to simply decorate strings on Linux terminals. I personally use it for multi-threaded project, it helps me recognize which thread is actually talking.
+A small module that allows to simply decorate strings on Linux terminals and on Windows Terminal. I personally use it for multi-threaded project, it helps me recognize which thread is actually talking.
 
 Compatible with Python > 2.7
 
