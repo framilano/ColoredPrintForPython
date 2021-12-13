@@ -1,5 +1,9 @@
 #Available formats
-formats = {"Bold":'\033[1m', "Underline":'\033[4m', "Reversed": "\033[7m"}
+formats = {"Bold":'\033[1m', "Italic":'\033[3m',
+    "Underline":'\033[4m', "Blinking": '\033[5m',
+    "Reversed": "\033[7m", "Strikethrough": '\033[9m',
+    "DoubleUnderline":'\033[21m'
+}
 
 #Reset code to end the 'decoration'
 reset_code = "\033[0m"
@@ -10,7 +14,8 @@ def colored_print(text = "", fg_color = None, bg_color = None, format = None):
     ``text`` str, the actual text you want to decorate\n
     ``fg_color`` int, the color you want to use (values are from 0 to 255)\n
     ``bg_color`` int, the color you want to use on background (values are from 0 to 255)\n
-    ``format`` str, the style you want to apply, possible values are [Bold, Reversed, Underline]\n
+    ``format`` str, the style you want to apply\n
+    Possible values are [Bold, Italic, Underline, Blinking, Reversed, Strikethrough and DoubleUnderline]\n
     Using bg_color parameter ignores the fg_color argument
     """
     if (not isinstance(text, str)): text = ""
@@ -42,7 +47,8 @@ def colored_sprint(text = "", fg_color = None, bg_color = None, format = None):
     ``text`` str, the actual text you want to decorate\n
     ``fg_color`` int, the color you want to use (values are from 0 to 255)\n
     ``bg_color`` int, the color you want to use on background (values are from 0 to 255)\n
-    ``format`` str, the style you want to apply, possible values are [Bold, Reversed, Underline]\n
+    ``format`` str, the style you want to apply\n
+    Possible values are [Bold, Italic, Underline, Blinking, Reversed, Strikethrough and DoubleUnderline]\n
     Using bg_color parameter ignores the fg_color argument
     """
     if (not isinstance(text, str)): text = ""
